@@ -53,6 +53,7 @@
 #include <Scene/QuadTransformer.h>
 #include <Scene/BSPTransformer.h>
 #include <Scene/ASDotVisitor.h>
+#include <Scene/ReflectionNode.h>
 #include <Renderers/AcceleratedRenderingView.h>
 
 // from FixedTimeStepPhysics
@@ -97,7 +98,6 @@ public:
  * the setup method is executed.
  */
 GameFactory::GameFactory() {
-
     // Create a frame and viewport.
     this->frame = new SDLFrame(WINDOW_WIDTH, WINDOW_HEIGHT, 32);
 
@@ -113,6 +113,7 @@ GameFactory::GameFactory() {
     
     renderer->process.Attach(*rv);  // space leak
     renderer->initialize.Attach(*dlt);
+    //    renderer->initialize.Attach(*(new TextureLoader()));
 }
 
 /**
@@ -174,6 +175,7 @@ bool GameFactory::SetupEngine(IGameEngine& engine) {
 
     // Load the resource plug-ins
     ResourceManager<IModelResource>::AddPlugin(new ColladaPlugin());
+    ResourceManager<IModelResource>::AddPlugin(new OBJPlugin());   
     ResourceManager<ITextureResource>::AddPlugin(new TGAPlugin());
     ResourceManager<IShaderResource>::AddPlugin(new GLSLPlugin());
 
@@ -183,22 +185,26 @@ bool GameFactory::SetupEngine(IGameEngine& engine) {
     engine.AddModule(*keyHandler);
 
     // Load the model
-    IModelResourcePtr mod_res = ResourceManager<IModelResource>::Create("rock.dae");
+    IModelResourcePtr mod_res = ResourceManager<IModelResource>::Create("FutureTank/model.obj");
     mod_res->Load();
- 
     ISceneNode* mod_node = mod_res->GetSceneNode();
     mod_res->Unload();
 
-    TransformationNode* mod_tran = new TransformationNode();
+    TransformationNode* mod_tran = new TransformationNode();    
+    //rNode->AddNode(mod_tran);
     mod_tran->AddNode(mod_node); 
-    rNode->AddNode(mod_tran);
+
+    // Add reflection effect
+    ReflectionNode* reflect = new ReflectionNode(mod_tran, NULL, 0);
+    rNode->AddNode(reflect);
+    reflect->AddNode(mod_tran);
 
     ofstream out("scenegraph.dot", ios::out); // create output file
     ASDotVisitor dot;                        // create dot visitor
     dot.Write(*scene, &out);           // build and write the graph
     out.close();                       // close your file
 
-   // Use vertex arrays
+    // Use vertex arrays
     VertexArrayTransformer vaT;
     vaT.Transform(*scene);
 

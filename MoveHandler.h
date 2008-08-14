@@ -28,7 +28,7 @@ using namespace OpenEngine::Devices;
 /**
  * Camera movement handler
  */
-    class MoveHandler : public IModule, public IListener<KeyboardEventArg> {
+class MoveHandler : public IModule, public IListener<KeyboardEventArg> {
 
 private:
     Camera& cam;
