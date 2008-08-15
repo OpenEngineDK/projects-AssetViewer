@@ -16,6 +16,7 @@ darcs /extensions/ColladaResource http://openengine.dk/code/extensions/ColladaRe
 darcs /extensions/FixedTimeStepPhysics   http://www.daimi.au.dk/~cgd/code/extensions/FixedTimeStepPhysics
 darcs /extensions/GenericHandlers http://openengine.dk/code/extensions/GenericHandlers
 darcs /extensions/AccelerationStructures http://www.daimi.au.dk/~cgd/code/extensions/AccelerationStructures
+darcs /extensions/OEGUI			 http://openengine.dk/code/extensions/OEGUI
 
 # windows libraries
 win32 /libraries http://openengine.dk/data/libraries/boost-win32.zip

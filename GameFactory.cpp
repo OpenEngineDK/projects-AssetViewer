@@ -113,7 +113,7 @@ GameFactory::GameFactory() {
     
     renderer->process.Attach(*rv);  // space leak
     renderer->initialize.Attach(*dlt);
-    //    renderer->initialize.Attach(*(new TextureLoader()));
+    renderer->initialize.Attach(*(new TextureLoader()));
 }
 
 /**
@@ -156,11 +156,11 @@ bool GameFactory::SetupEngine(IGameEngine& engine) {
 
     // Bind the camera to the viewport
     Camera* camera = new Camera(*(new ViewingVolume));
-    camera->SetPosition(Vector<3,float>(10,30,-100));
+    camera->SetPosition(Vector<3,float>(5,3,-30));
     camera->LookAt(Vector<3,float>(0,0,0));
 
     //FollowCamera* camera = new FollowCamera( *(new InterpolatedViewingVolume( *(new ViewingVolume()) )));
-    Frustum* frustum = new Frustum(*camera, 20, 5000);
+    Frustum* frustum = new Frustum(*camera, 0.001, 5000);
     viewport->SetViewingVolume(frustum);
 
     // Register movement handler to be able to move the camera
@@ -190,14 +190,25 @@ bool GameFactory::SetupEngine(IGameEngine& engine) {
     ISceneNode* mod_node = mod_res->GetSceneNode();
     mod_res->Unload();
 
+    IModelResourcePtr podium_res = ResourceManager<IModelResource>::Create("Podium001.dae");
+    podium_res->Load();
+    ISceneNode* podium_node = podium_res->GetSceneNode();
+    podium_res->Unload();
+
     TransformationNode* mod_tran = new TransformationNode();    
-    //rNode->AddNode(mod_tran);
     mod_tran->AddNode(mod_node); 
 
+    TransformationNode* podium_tran = new TransformationNode();    
+    podium_tran->AddNode(podium_node); 
+    
     // Add reflection effect
-    ReflectionNode* reflect = new ReflectionNode(mod_tran, NULL, 0);
-    rNode->AddNode(reflect);
-    reflect->AddNode(mod_tran);
+    //ReflectionNode* reflect = new ReflectionNode(mod_tran, podium_tran, 0);
+    //rNode->AddNode(reflect);
+    //reflect->AddNode(mod_tran);
+    //reflect->AddNode(podium_tran);
+
+    rNode->AddNode(podium_tran);
+    rNode->AddNode(mod_tran);
 
     ofstream out("scenegraph.dot", ios::out); // create output file
     ASDotVisitor dot;                        // create dot visitor
@@ -207,6 +218,25 @@ bool GameFactory::SetupEngine(IGameEngine& engine) {
     // Use vertex arrays
     VertexArrayTransformer vaT;
     vaT.Transform(*scene);
+
+
+    CairoSurfaceResourcePtr sr = 
+        CairoSurfaceResourcePtr(new CairoSurfaceResource(CairoSurfaceResource::CreateCairoSurface(1000,100)));
+
+    TextSurface *ts = new TextSurface(*sr, string("Hmm"));
+
+    LayerNode *ln = new LayerNode(1024, 768); 
+    Layer layer(0,0);
+    //Layer babeLayer(100,100);
+  
+    layerStat = new LayerStatistics(1000, ts);
+    engine.AddModule(*layerStat);
+    //babeLayer.texr = ResourceManager<ITextureResource>::Create("hud.tga");
+    layer.texr = sr;
+    ln->AddLayer(layer); // = sr; //ResourceManager<ITextureResource>::Create("hud.tga");
+    //ln->AddLayer(*layerStat);
+    //ln->AddLayer(babeLayer);
+    scene->AddNode(ln);
 
     // Return true to signal success.
     return true;
