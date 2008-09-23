@@ -53,7 +53,7 @@
 #include <Scene/QuadTransformer.h>
 #include <Scene/BSPTransformer.h>
 #include <Scene/ASDotVisitor.h>
-#include <Scene/ReflectionNode.h>
+//#include <Scene/ReflectionNode.h>
 #include <Renderers/AcceleratedRenderingView.h>
 
 // from FixedTimeStepPhysics
@@ -66,8 +66,8 @@
 // Project files
 #include "KeyboardHandler.h"
 #include "RenderStateHandler.h"
-#include "MoveHandler.h"
-#include "QuitHandler.h"
+#include <Utils/MoveHandler.h>
+#include <Utils/QuitHandler.h>
 
 // Additional namespaces (others are in the header).
 using namespace OpenEngine::Devices;
@@ -106,14 +106,14 @@ GameFactory::GameFactory() {
 
     // Create a renderer.
     this->renderer = new Renderer();
-    renderer->initialize.Attach(*(new TextureLoader()));
+    renderer->InitializeEvent().Attach(*(new TextureLoader()));
     // Add a rendering view to the renderer
     MyRenderingView* rv = new MyRenderingView(*viewport);
     DisplayListTransformer* dlt = new DisplayListTransformer(rv);
     
-    renderer->process.Attach(*rv);  // space leak
-    renderer->initialize.Attach(*dlt);
-    renderer->initialize.Attach(*(new TextureLoader()));
+    renderer->ProcessEvent().Attach(*rv);  // space leak
+    renderer->InitializeEvent().Attach(*dlt);
+    renderer->InitializeEvent().Attach(*(new TextureLoader()));
 }
 
 /**
@@ -125,14 +125,18 @@ GameFactory::GameFactory() {
  *
  * @param engine The game engine instance.
  */
-bool GameFactory::SetupEngine(IGameEngine& engine) {
+bool GameFactory::SetupEngine(IEngine& engine) {
 
     // Add mouse and keyboard module here
     SDLInput* input = new SDLInput();
-    engine.AddModule(*input);
+    // Bind to the engine for processing time
+    engine.InitializeEvent().Attach(*input);
+    engine.ProcessEvent().Attach(*input);
+    engine.DeinitializeEvent().Attach(*input);
+
 
     // Add Statistics module
-    engine.AddModule(*(new OpenEngine::Utils::Statistics(1000)));
+    engine.ProcessEvent().Attach(*(new OpenEngine::Utils::Statistics(1000)));
 
     // Create a root scene node
     SceneNode* scene = new SceneNode();
@@ -148,11 +152,11 @@ bool GameFactory::SetupEngine(IGameEngine& engine) {
     
     // Bind keys for changing rendering state
     RenderStateHandler* renderStateHandler = new RenderStateHandler(rNode);
-    renderStateHandler->BindToEventSystem();
+    input->KeyEvent().Attach(*renderStateHandler);
 
     // Bind the quit handler
-    QuitHandler* quit_h = new QuitHandler();
-    quit_h->BindToEventSystem();
+    QuitHandler* quit_h = new QuitHandler(engine);
+    input->KeyEvent().Attach(*quit_h);
 
     // Bind the camera to the viewport
     Camera* camera = new Camera(*(new ViewingVolume));
@@ -164,9 +168,11 @@ bool GameFactory::SetupEngine(IGameEngine& engine) {
     viewport->SetViewingVolume(frustum);
 
     // Register movement handler to be able to move the camera
-    MoveHandler* move = new MoveHandler(*camera);
-    move->BindToEventSystem();
-    engine.AddModule(*move);
+    MoveHandler* move = new MoveHandler(*camera, *input);
+    input->KeyEvent().Attach(*move);
+    engine.InitializeEvent().Attach(*move);
+    engine.ProcessEvent().Attach(*move);
+    engine.DeinitializeEvent().Attach(*move);
     
     // set the resources directory
     string resources = "projects/AssetViewer/data/";
@@ -180,9 +186,8 @@ bool GameFactory::SetupEngine(IGameEngine& engine) {
     ResourceManager<IShaderResource>::AddPlugin(new GLSLPlugin());
 
     // Keyboard bindings to the rigid box and camera
-    KeyboardHandler* keyHandler = new KeyboardHandler(camera,NULL,NULL);
-    keyHandler->BindToEventSystem();
-    engine.AddModule(*keyHandler);
+    KeyboardHandler* keyHandler = new KeyboardHandler(camera,NULL,NULL,engine);
+    input->KeyEvent().Attach(*keyHandler);
 
     // Load the model
     IModelResourcePtr mod_res = ResourceManager<IModelResource>::Create("FutureTank/model.obj");
@@ -219,7 +224,7 @@ bool GameFactory::SetupEngine(IGameEngine& engine) {
     VertexArrayTransformer vaT;
     vaT.Transform(*scene);
 
-
+    /* @@@todo
     CairoSurfaceResourcePtr sr = 
         CairoSurfaceResourcePtr(new CairoSurfaceResource(CairoSurfaceResource::CreateCairoSurface(1000,100)));
 
@@ -237,7 +242,7 @@ bool GameFactory::SetupEngine(IGameEngine& engine) {
     //ln->AddLayer(*layerStat);
     //ln->AddLayer(babeLayer);
     scene->AddNode(ln);
-
+*/
     // Return true to signal success.
     return true;
 }

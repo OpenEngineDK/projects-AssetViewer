@@ -28,10 +28,6 @@ public:
         default: break;
         }
     }
-
-    void BindToEventSystem() {
-        IKeyboard::keyEvent.Attach(*this);
-    }
 };
 
 #endif

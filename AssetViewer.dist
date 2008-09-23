@@ -8,14 +8,14 @@ darcs / http://openengine.dk/code/openengine
 darcs /projects/AssetViewer http://www.daimi.au.dk/~cgd/code/projects/AssetViewer
 
 # standard set of extensions
-darcs /extensions/SDL             http://openengine.dk/code/extensions/SDL
-darcs /extensions/OpenGLRenderer  http://openengine.dk/code/extensions/OpenGLRenderer
-darcs /extensions/TGAResource     http://openengine.dk/code/extensions/TGAResource
-darcs /extensions/OBJResource     http://openengine.dk/code/extensions/OBJResource
-darcs /extensions/ColladaResource http://openengine.dk/code/extensions/ColladaResource
-darcs /extensions/FixedTimeStepPhysics   http://www.daimi.au.dk/~cgd/code/extensions/FixedTimeStepPhysics
-darcs /extensions/GenericHandlers http://openengine.dk/code/extensions/GenericHandlers
-darcs /extensions/AccelerationStructures http://www.daimi.au.dk/~cgd/code/extensions/AccelerationStructures
+darcs /extensions/SDL                    http://openengine.dk/code/extensions/SDL
+darcs /extensions/OpenGLRenderer         http://openengine.dk/code/extensions/OpenGLRenderer
+darcs /extensions/TGAResource            http://openengine.dk/code/extensions/TGAResource
+darcs /extensions/OBJResource            http://openengine.dk/code/extensions/OBJResource
+darcs /extensions/ColladaResource        http://openengine.dk/code/extensions/ColladaResource
+darcs /extensions/FixedTimeStepPhysics   http://openengine.dk/code/extensions/FixedTimeStepPhysics
+darcs /extensions/GenericHandlers        http://openengine.dk/code/extensions/GenericHandlers
+darcs /extensions/AccelerationStructures http://openengine.dk/code/extensions/AccelerationStructures
 darcs /extensions/OEGUI			 http://openengine.dk/code/extensions/OEGUI
 
 # windows libraries
@@ -28,6 +28,8 @@ win32 /libraries http://openengine.dk/data/libraries/colladadom2.1-win32.zip
 # os x libraries
 #darwin /libraries http://openengine.dk/data/libraries/oe-mac-i32-packages.zip
 darwin /libraries http://openengine.dk/data/libraries/Collada-mac.tar.gz
+darwin /libraries http://openengine.dk/data/libraries/pcre-osx-i32.zip
+darwin /libraries http://openengine.dk/data/libraries/pcrecpp-osx-i32.zip
 
 # linux libraries
 linux /libraries http://openengine.dk/data/libraries/collada-linux.tar.gz

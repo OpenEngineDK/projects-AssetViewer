@@ -9,24 +9,17 @@
 using namespace OpenEngine::Devices;
 using namespace OpenEngine::Physics;
 
-class KeyboardHandler : public IModule, public IListener<KeyboardEventArg> {
+class KeyboardHandler : public IListener<KeyboardEventArg> {
 private:
     bool up, down, left, right, mod;
     float step;
     Camera* camera;
     RigidBox* box;
     FixedTimeStepPhysics* physics;
+    IEngine& engine;
 public:
-    KeyboardHandler(Camera* camera, RigidBox* box, FixedTimeStepPhysics* physics)
-        : up(false), down(false), left(false), right(false), camera(camera), box(box), physics(physics) {}
-
-    bool IsTypeOf(const std::type_info& inf) { return typeid(KeyboardHandler) == inf; }
-    void Initialize() {
-        step = 0.0f;
-    }
-    void Deinitialize() {}
-    void Process(const float deltaTime, const float percent) {
-    }
+ KeyboardHandler(Camera* camera, RigidBox* box, FixedTimeStepPhysics* physics, IEngine& engine)
+     : up(false), down(false), left(false), right(false), camera(camera), box(box), physics(physics), engine(engine) { step = 0.0f; }
 
     void Handle(KeyboardEventArg arg) {
         (arg.type == KeyboardEventArg::PRESS) ? KeyDown(arg) : KeyUp(arg);
@@ -53,7 +46,7 @@ public:
 
         // Quit on Escape
         case KEY_ESCAPE:
-            IGameEngine::Instance().Stop();
+            engine.Stop();
             break;
         default: break;
         }
@@ -70,10 +63,6 @@ public:
 
         default: break;
         }
-    }
-    
-    void BindToEventSystem() {
-        IKeyboard::keyEvent.Attach(*this);
     }
 };
 

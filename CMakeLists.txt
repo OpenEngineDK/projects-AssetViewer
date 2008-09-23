@@ -4,7 +4,6 @@ SET( ASSETVIEWER_SOURCES
   # Add all the cpp source files here
   main.cpp
   GameFactory.cpp
-  MoveHandler.cpp
 )
 
 # todo get rid of this!@#!
@@ -23,13 +22,13 @@ TARGET_LINK_LIBRARIES(AssetViewer
   OpenEngine_Display
   OpenEngine_Devices
   OpenEngine_Renderers
-  OpenEngine_Renderers_OpenGL
   OpenEngine_Resources
   OpenEngine_Scene
   OpenEngine_Utils
   # Extensions
   Extensions_SDL
   Extensions_ColladaResource
+  Extensions_GenericHandlers
   Extensions_TGAResource
   Extensions_OBJResource
   Extensions_FixedTimeStepPhysics
