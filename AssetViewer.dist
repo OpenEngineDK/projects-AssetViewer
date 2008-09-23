@@ -1,11 +1,12 @@
-# OpenEngine Distribution.
-# This file describes the default OpenEngine distribution.
+# OpenEngine Distribution file for AssetViewer.
 
 # main repository
 darcs / http://openengine.dk/code/openengine
+darcs-dev / fh.daimi.au.dk:/users/cgd/code/openengine
 
 # AssetViewer project
 darcs /projects/AssetViewer http://www.daimi.au.dk/~cgd/code/projects/AssetViewer
+darcs-dev /projects/AssetViewer fh.daimi.au.dk:/users/cgd/code/projects/AssetViewer
 
 # standard set of extensions
 darcs /extensions/SDL                    http://openengine.dk/code/extensions/SDL
@@ -18,6 +19,16 @@ darcs /extensions/GenericHandlers        http://openengine.dk/code/extensions/Ge
 darcs /extensions/AccelerationStructures http://openengine.dk/code/extensions/AccelerationStructures
 darcs /extensions/OEGUI			 http://openengine.dk/code/extensions/OEGUI
 
+darcs-dev /extensions/SDL                    fh.daimi.au.dk:/users/cgd/code/extensions/SDL
+darcs-dev /extensions/OpenGLRenderer         fh.daimi.au.dk:/users/cgd/code/extensions/OpenGLRenderer
+darcs-dev /extensions/TGAResource            fh.daimi.au.dk:/users/cgd/code/extensions/TGAResource
+darcs-dev /extensions/OBJResource            fh.daimi.au.dk:/users/cgd/code/extensions/OBJResource
+darcs-dev /extensions/ColladaResource        fh.daimi.au.dk:/users/cgd/code/extensions/ColladaResource
+darcs-dev /extensions/FixedTimeStepPhysics   fh.daimi.au.dk:/users/cgd/code/extensions/FixedTimeStepPhysics
+darcs-dev /extensions/GenericHandlers        fh.daimi.au.dk:/users/cgd/code/extensions/GenericHandlers
+darcs-dev /extensions/AccelerationStructures fh.daimi.au.dk:/users/cgd/code/extensions/AccelerationStructures
+darcs-dev /extensions/OEGUI                  fh.daimi.au.dk:/users/cgd/code/extensions/OEGUI
+
 # windows libraries
 win32 /libraries http://openengine.dk/data/libraries/boost-win32.zip
 win32 /libraries http://openengine.dk/data/libraries/glew-win32.zip
@@ -26,7 +37,6 @@ win32 /libraries http://openengine.dk/data/libraries/dlls-win32.zip
 win32 /libraries http://openengine.dk/data/libraries/colladadom2.1-win32.zip
 
 # os x libraries
-#darwin /libraries http://openengine.dk/data/libraries/oe-mac-i32-packages.zip
 darwin /libraries http://openengine.dk/data/libraries/Collada-mac.tar.gz
 darwin /libraries http://openengine.dk/data/libraries/pcre-osx-i32.zip
 darwin /libraries http://openengine.dk/data/libraries/pcrecpp-osx-i32.zip
