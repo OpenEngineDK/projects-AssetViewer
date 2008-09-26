@@ -126,7 +126,15 @@ GameFactory::GameFactory() {
  * @param engine The game engine instance.
  */
 bool GameFactory::SetupEngine(IEngine& engine) {
+    
+    engine.InitializeEvent().Attach(*this->frame);
+    engine.ProcessEvent().Attach(*this->frame);
+    engine.DeinitializeEvent().Attach(*this->frame);
 
+    engine.InitializeEvent().Attach(*this->renderer);
+    engine.ProcessEvent().Attach(*this->renderer);
+    engine.DeinitializeEvent().Attach(*this->renderer);
+  
     // Add mouse and keyboard module here
     SDLInput* input = new SDLInput();
     // Bind to the engine for processing time
