@@ -17,14 +17,14 @@ public:
             return;
         }
         switch (arg.sym) {
-        case KEY_F1: rNode->ToggleOptions(RenderStateNode::RENDER_WIREFRAMED);   break;
-        case KEY_F2: rNode->ToggleOptions(RenderStateNode::RENDER_TEXTURES);     break;
-        case KEY_F3: rNode->ToggleOptions(RenderStateNode::RENDER_NORMALS);      break;
-        case KEY_F4: rNode->ToggleOptions(RenderStateNode::RENDER_SHADERS);      break;
-        case KEY_F5: rNode->ToggleOptions(RenderStateNode::RENDER_BACKFACES);    break;
-        case KEY_F6: rNode->ToggleOptions(RenderStateNode::RENDER_HARD_NORMAL);  break;
-        case KEY_F7: rNode->ToggleOptions(RenderStateNode::RENDER_BINORMALS);    break;
-        case KEY_F8: rNode->ToggleOptions(RenderStateNode::RENDER_TANGENTS);     break;
+        case KEY_F1: rNode->ToggleOption(RenderStateNode::WIREFRAME);   break;
+        case KEY_F2: rNode->ToggleOption(RenderStateNode::TEXTURE);     break;
+        case KEY_F3: rNode->ToggleOption(RenderStateNode::SOFT_NORMAL);      break;
+        case KEY_F4: rNode->ToggleOption(RenderStateNode::SHADER);      break;
+        case KEY_F5: rNode->ToggleOption(RenderStateNode::BACKFACE);    break;
+        case KEY_F6: rNode->ToggleOption(RenderStateNode::HARD_NORMAL);  break;
+        case KEY_F7: rNode->ToggleOption(RenderStateNode::BINORMAL);    break;
+        case KEY_F8: rNode->ToggleOption(RenderStateNode::TANGENT);     break;
         default: break;
         }
     }
