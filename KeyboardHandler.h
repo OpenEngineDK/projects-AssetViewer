@@ -22,7 +22,7 @@ public:
      : up(false), down(false), left(false), right(false), camera(camera), box(box), physics(physics), engine(engine) { step = 0.0f; }
 
     void Handle(KeyboardEventArg arg) {
-        (arg.type == KeyboardEventArg::PRESS) ? KeyDown(arg) : KeyUp(arg);
+        (arg.type == EVENT_PRESS) ? KeyDown(arg) : KeyUp(arg);
     }
 
     void KeyDown(KeyboardEventArg arg) {

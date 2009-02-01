@@ -31,6 +31,7 @@ TARGET_LINK_LIBRARIES(AssetViewer
   Extensions_GenericHandlers
   Extensions_TGAResource
   Extensions_OBJResource
+  Extensions_OpenGLRenderer
   Extensions_FixedTimeStepPhysics
   ${BOOST_SERIALIZATION_LIB}
 )

@@ -26,8 +26,8 @@
 #include <Display/SDLFrame.h>
 #include <Devices/SDLInput.h>
 #include <Logging/Logger.h>
-#include <Renderers/IRenderNode.h>
-#include <Renderers/RenderStateNode.h>
+#include <Scene/RenderNode.h>
+#include <Scene/RenderStateNode.h>
 #include <Renderers/OpenGL/Renderer.h>
 #include <Renderers/OpenGL/RenderingView.h>
 #include <Renderers/OpenGL/TextureLoader.h>
@@ -105,7 +105,7 @@ GameFactory::GameFactory() {
     viewport = new Viewport(*frame);
 
     // Create a renderer.
-    this->renderer = new Renderer();
+    this->renderer = new Renderer(viewport);
     renderer->InitializeEvent().Attach(*(new TextureLoader()));
     // Add a rendering view to the renderer
     MyRenderingView* rv = new MyRenderingView(*viewport);
