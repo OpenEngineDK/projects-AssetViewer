@@ -9,37 +9,30 @@
 
 // OpenEngine stuff
 #include <Meta/Config.h>
-#include <Logging/Logger.h>
-#include <Logging/StreamLogger.h>
-#include <Core/Engine.h>
+#include <Utils/SimpleSetup.h>
+#include <Display/QtEnvironment.h>
 
-// Game factory
-#include "GameFactory.h"
+#include <string>
 
-// name spaces that we will be using.
-// this combined with the above imports is almost the same as
-// fx. import OpenEngine.Logging.*; in Java.
-using namespace OpenEngine::Logging;
-using namespace OpenEngine::Core;
+#include "MainGUI.h"
 
-/**
- * Main method for the first quarter project of CGD.
- * Corresponds to the
- *   public static void main(String args[])
- * method in Java.
- */
+using namespace std;
+using namespace OpenEngine;
+
 int main(int argc, char** argv) {
-    // Setup logging facilities.
-    Logger::AddLogger(new StreamLogger(&std::cout));
+    string title("OpenEngine Asset Viewer");
 
-    // Print usage info.
-    logger.info << "========= Running OpenEngine Test Project =========" << logger.end;
+    // Use Qt as our window toolkit
+    Display::QtEnvironment* env = new Display::QtEnvironment(false);
+
+    // Create a simple-setup
+    Utils::SimpleSetup* setup = new Utils::SimpleSetup(title, NULL, env);
+
+    // Create the GUI
+    MainGUI* gui = new MainGUI(title, *env, *setup);
 
     // Start the engine.
-    Engine engine;
-    GameFactory* gf = new GameFactory();
-    gf->SetupEngine(engine);
-    engine.Start();
+    setup->GetEngine().Start();
 
     // Return when the engine stops.
     return EXIT_SUCCESS;
