@@ -25,5 +25,6 @@ TARGET_LINK_LIBRARIES(AssetViewer
   # Extensions
   Extensions_SetupHelpers
   Extensions_Qt
+  Extensions_OpenGLSelection
   ${BOOST_SERIALIZATION_LIB}
 )

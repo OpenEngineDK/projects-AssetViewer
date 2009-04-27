@@ -2,7 +2,6 @@
 #define _OE_MAIN_GUI_H_
 
 #include <Meta/OpenGL.h>
-
 #include <Display/QtEnvironment.h>
 #include <Utils/SimpleSetup.h>
 #include <string>
@@ -16,6 +15,9 @@ namespace Display {
     class SceneNodeGUI;
     class SceneGraphGUI;
 }
+namespace Utils {
+    class MouseSelector;
+}
 }
 
 class MainGUI : public QMainWindow {
@@ -23,7 +25,7 @@ class MainGUI : public QMainWindow {
     Ui::MainGUI* ui;
     OpenEngine::Display::SceneNodeGUI*  nodeGui;
     OpenEngine::Display::SceneGraphGUI* graphGui;
-
+    OpenEngine::Utils::MouseSelector*   mouseSel;
 public:
     MainGUI(std::string title,
             OpenEngine::Display::QtEnvironment& env,

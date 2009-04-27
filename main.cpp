@@ -8,11 +8,11 @@
 //--------------------------------------------------------------------
 
 // OpenEngine stuff
+#include <Meta/OpenGL.h>
 #include <Meta/Config.h>
 #include <Meta/OpenGL.h>
 #include <Utils/SimpleSetup.h>
 #include <Display/QtEnvironment.h>
-
 #include <string>
 
 #include "MainGUI.h"

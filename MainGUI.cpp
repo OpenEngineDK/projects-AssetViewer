@@ -9,6 +9,8 @@
 
 #include "AssetViewer/ui_MainGUI.h"
 
+#include <Utils/MouseSelector.h>
+
 using namespace std;
 using namespace OpenEngine::Display;
 using namespace OpenEngine::Utils;
@@ -49,10 +51,21 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup) {
 
     // Show the gui!
     show();
+
+    //attach the mouse selection handler - maybe this should be put elsewhere
+    mouseSel = new MouseSelector(env.GetFrame(), 
+                                 *env.GetMouse(), 
+                                 graphGui->selectionList, 
+                                 setup.GetScene());
+    setup.GetRenderer().PostProcessEvent().Attach(*mouseSel);
+    env.GetMouse()->MouseMovedEvent().Attach(*mouseSel);
+    env.GetMouse()->MouseButtonEvent().Attach(*mouseSel);
+    mouseSel->AddViewport(vp);
 }
 
 MainGUI::~MainGUI() {
     delete ui;
     delete graphGui;
     delete nodeGui;
+    delete mouseSel;
 }
