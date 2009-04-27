@@ -39,7 +39,7 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup) {
     setup.GetCamera()->LookAt(lookat);
 
     // add the node and graph components to the right pane
-    graphGui = new SceneGraphGUI(setup.GetScene());
+    graphGui = new SceneGraphGUI(setup.GetScene(), &setup.GetTextureLoader());
     nodeGui  = new SceneNodeGUI();
     setup.GetEngine().InitializeEvent().Attach(*graphGui);
     graphGui->SelectionEvent().Attach(*nodeGui);
