@@ -1,6 +1,8 @@
 #ifndef _OE_MAIN_GUI_H_
 #define _OE_MAIN_GUI_H_
 
+#include <Meta/OpenGL.h>
+
 #include <Display/QtEnvironment.h>
 #include <Utils/SimpleSetup.h>
 #include <string>

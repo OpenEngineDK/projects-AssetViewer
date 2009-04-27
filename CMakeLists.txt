@@ -11,6 +11,10 @@ QT4_WRAP_CPP(MOC_SOURCE
 ADD_EXECUTABLE(AssetViewer
   main.cpp
   MainGUI.cpp
+  RenderingView.h
+  RenderingView.cpp
+  GridNode.h
+  GridNode.cpp
   ${MOC_SOURCE}
   ${UI_SOURCE}
 )

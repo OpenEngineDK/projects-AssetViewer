@@ -9,6 +9,7 @@
 
 // OpenEngine stuff
 #include <Meta/Config.h>
+#include <Meta/OpenGL.h>
 #include <Utils/SimpleSetup.h>
 #include <Display/QtEnvironment.h>
 
