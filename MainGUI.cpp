@@ -40,8 +40,10 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup) {
     setup.GetCamera()->SetPosition(position);
     setup.GetCamera()->LookAt(lookat);
 
+    ss = new SelectionSet<ISceneNode>();
+
     // add the node and graph components to the right pane
-    graphGui = new SceneGraphGUI(setup.GetScene(), &setup.GetTextureLoader());
+    graphGui = new SceneGraphGUI(setup.GetScene(), &setup.GetTextureLoader(), *ss);
     nodeGui  = new SceneNodeGUI();
     setup.GetEngine().InitializeEvent().Attach(*graphGui);
     graphGui->SelectionEvent().Attach(*nodeGui);
@@ -55,7 +57,7 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup) {
     //attach the mouse selection handler - maybe this should be put elsewhere
     mouseSel = new MouseSelector(env.GetFrame(), 
                                  *env.GetMouse(), 
-                                 graphGui->selectionList, 
+                                 *ss, 
                                  setup.GetScene());
     setup.GetRenderer().PostProcessEvent().Attach(*mouseSel);
     env.GetMouse()->MouseMovedEvent().Attach(*mouseSel);
@@ -68,4 +70,5 @@ MainGUI::~MainGUI() {
     delete graphGui;
     delete nodeGui;
     delete mouseSel;
+    delete ss;
 }
