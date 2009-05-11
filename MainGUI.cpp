@@ -22,7 +22,9 @@ using namespace OpenEngine::Scene;
 using namespace OpenEngine::Math;
 using namespace OpenEngine::Logging;
 
-MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup) {
+MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup)
+    : setup(setup) {
+
     // install the qt-designer generated gui
     ui = new Ui::MainGUI();
     ui->setupUi(this);
@@ -80,6 +82,10 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup) {
     env.GetMouse()->MouseMovedEvent().Attach(*mouseSel);
     env.GetMouse()->MouseButtonEvent().Attach(*mouseSel);
     mouseSel->AddViewport(vp);
+}
+
+void MainGUI::closeEvent(QCloseEvent* e) {
+    setup.GetEngine().Stop();
 }
 
 MainGUI::~MainGUI() {

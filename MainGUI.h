@@ -26,6 +26,7 @@ namespace Scene {
 class MainGUI : public QMainWindow {
     Q_OBJECT;
     Ui::MainGUI* ui;
+    OpenEngine::Utils::SimpleSetup& setup;
     OpenEngine::Display::SceneNodeGUI*                              nodeGui;
     OpenEngine::Display::SceneGraphGUI*                             graphGui;
     OpenEngine::Utils::SelectionSet<OpenEngine::Scene::ISceneNode>* ss;
@@ -35,6 +36,8 @@ public:
             OpenEngine::Display::QtEnvironment& env,
             OpenEngine::Utils::SimpleSetup& setup);
     virtual ~MainGUI();
+
+    void closeEvent(QCloseEvent* e);
 
 };
 

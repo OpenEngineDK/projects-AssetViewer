@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1074</width>
-    <height>501</height>
+    <width>162</width>
+    <height>361</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -42,7 +42,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1074</width>
+     <width>162</width>
      <height>26</height>
     </rect>
    </property>
@@ -68,5 +68,25 @@
   </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>action_Exit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainGUI</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>80</x>
+     <y>180</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>Quit()</slot>
+ </slots>
 </ui>
