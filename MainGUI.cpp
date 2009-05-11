@@ -9,7 +9,10 @@
 
 #include "AssetViewer/ui_MainGUI.h"
 
+#include <Logging/Logger.h>
+
 #include <Utils/FPSGUI.h>
+#include <Utils/QtLogger.h>
 #include <Utils/MouseSelector.h>
 
 using namespace std;
@@ -17,6 +20,7 @@ using namespace OpenEngine::Display;
 using namespace OpenEngine::Utils;
 using namespace OpenEngine::Scene;
 using namespace OpenEngine::Math;
+using namespace OpenEngine::Logging;
 
 MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup) {
     // install the qt-designer generated gui
@@ -26,6 +30,12 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup) {
     // set the main window title and status
     setWindowTitle(QString(title.c_str()));
     ui->statusbar->showMessage(QString("Loading..."));
+
+    // replace the simple-setup logger
+    Logger::RemoveLogger(setup.GetLogger());
+    QtLogger* qtlog = new QtLogger();
+    Logger::AddLogger(qtlog);
+    ui->bottomLayout->addWidget(qtlog);
 
     // add the gl widget to the left pane
     ui->topLayout->addWidget(env.GetGLWidget());
