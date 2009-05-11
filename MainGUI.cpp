@@ -9,6 +9,7 @@
 
 #include "AssetViewer/ui_MainGUI.h"
 
+#include <Utils/FPSGUI.h>
 #include <Utils/MouseSelector.h>
 
 using namespace std;
@@ -50,6 +51,12 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup) {
     graphGui->setMinimumWidth(150);
     ui->rightLayout->addWidget(nodeGui);
     ui->rightLayout->addWidget(graphGui);
+
+    // add a permanent fps display in the status bar
+    FPSGUI* fps = new FPSGUI(1000000/2);
+    fps->layout()->addWidget(new QLabel(QString("fps")));
+    ui->statusbar->addPermanentWidget(fps);
+    setup.GetEngine().ProcessEvent().Attach(*fps);
 
     // Show the gui!
     show();
