@@ -13,14 +13,19 @@
 #include <Meta/OpenGL.h>
 #include <Utils/SimpleSetup.h>
 #include <Display/QtEnvironment.h>
+#include <Resources/DirectoryManager.h>
 #include <string>
 
 #include "MainGUI.h"
 
 using namespace std;
 using namespace OpenEngine;
+using namespace Resources;
 
 int main(int argc, char** argv) {
+    string resources("projects/AssetViewer/data/");
+    DirectoryManager::AppendPath(resources);
+
     string title("OpenEngine Asset Viewer");
 
     // Use Qt as our window toolkit

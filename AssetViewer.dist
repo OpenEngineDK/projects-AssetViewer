@@ -11,7 +11,8 @@ darcs-dev /projects/AssetViewer fh.daimi.au.dk:/users/cgd/code/projects/AssetVie
 # standard set of extensions
 darcs /extensions/SDL                    http://openengine.dk/code/extensions/SDL
 darcs /extensions/OpenGLRenderer         http://openengine.dk/code/extensions/OpenGLRenderer
-darcs /extensions/TGAResource            http://openengine.dk/code/extensions/TGAResource
+#darcs /extensions/TGAResource           http://openengine.dk/code/extensions/TGAResource
+darcs /extensions/SDLImage               http://openengine.dk/code/extensions/SDLImage
 darcs /extensions/OBJResource            http://openengine.dk/code/extensions/OBJResource
 darcs /extensions/ColladaResource        http://openengine.dk/code/extensions/ColladaResource
 darcs /extensions/AccelerationStructures http://openengine.dk/code/extensions/AccelerationStructures
@@ -19,6 +20,7 @@ darcs /extensions/SetupHelpers           http://openengine.dk/code/extensions/Se
 darcs /extensions/HUD                    http://openengine.dk/code/extensions/HUD
 darcs /extensions/Qt                     http://openengine.dk/code/extensions/Qt
 darcs /extensions/OpenGLSelection        http://openengine.dk/code/extensions/OpenGLSelection
+darcs /extensions/CairoResource          http://openengine.dk/code/extensions/CairoResource
 
 darcs-dev /extensions/SDL                    fh.daimi.au.dk:/users/cgd/code/extensions/SDL
 darcs-dev /extensions/OpenGLRenderer         fh.daimi.au.dk:/users/cgd/code/extensions/OpenGLRenderer
