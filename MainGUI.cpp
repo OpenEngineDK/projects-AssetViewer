@@ -13,7 +13,7 @@
 
 #include <Utils/FPSGUI.h>
 #include <Utils/QtLogger.h>
-#include <Utils/MouseSelector.h>
+#include <Utils/MouseSelection.h>
 
 using namespace std;
 using namespace OpenEngine::Display;
@@ -74,7 +74,7 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup)
     show();
 
     //attach the mouse selection handler - maybe this should be put elsewhere
-    mouseSel = new MouseSelector(env.GetFrame(), 
+    mouseSel = new MouseSelection(env.GetFrame(), 
                                  *env.GetMouse(), 
                                  *ss, 
                                  setup.GetScene());

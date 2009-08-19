@@ -16,7 +16,7 @@ namespace Display {
     class SceneGraphGUI;
 }
 namespace Utils {
-    class MouseSelector;
+    class MouseSelection;
 }
 namespace Scene {
     class ISceneNode;
@@ -30,7 +30,7 @@ class MainGUI : public QMainWindow {
     OpenEngine::Display::SceneNodeGUI*                              nodeGui;
     OpenEngine::Display::SceneGraphGUI*                             graphGui;
     OpenEngine::Utils::SelectionSet<OpenEngine::Scene::ISceneNode>* ss;
-    OpenEngine::Utils::MouseSelector*                               mouseSel;
+    OpenEngine::Utils::MouseSelection*                              mouseSel;
 public:
     MainGUI(std::string title,
             OpenEngine::Display::QtEnvironment& env,
