@@ -13,7 +13,11 @@
 
 #include <Utils/FPSGUI.h>
 #include <Utils/QtLogger.h>
+
 #include <Utils/MouseSelection.h>
+#include <Utils/SelectionTool.h>
+#include <Utils/TransformationTool.h>
+#include <Utils/CameraTool.h>
 
 using namespace std;
 using namespace OpenEngine::Display;
@@ -82,6 +86,15 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup)
     env.GetMouse()->MouseMovedEvent().Attach(*mouseSel);
     env.GetMouse()->MouseButtonEvent().Attach(*mouseSel);
     mouseSel->AddViewport(vp);
+    
+    SelectionTool*      st = new SelectionTool();
+    TransformationTool* tt = new TransformationTool();
+    CameraTool*         ct = new CameraTool();
+    ss->ChangedEvent().Attach(*tt);
+
+    mouseSel->AddTool(ct);
+    mouseSel->AddTool(tt);
+    mouseSel->AddTool(st);
 }
 
 void MainGUI::closeEvent(QCloseEvent* e) {
