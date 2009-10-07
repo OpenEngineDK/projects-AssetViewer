@@ -18,6 +18,7 @@
 #include <Utils/SelectionTool.h>
 #include <Utils/TransformationTool.h>
 #include <Utils/CameraTool.h>
+#include <Utils/ToolChain.h>
 
 using namespace std;
 using namespace OpenEngine::Display;
@@ -80,21 +81,23 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup)
     //attach the mouse selection handler - maybe this should be put elsewhere
     mouseSel = new MouseSelection(env.GetFrame(), 
                                  *env.GetMouse(), 
-                                 *ss, 
                                  setup.GetScene());
     setup.GetRenderer().PostProcessEvent().Attach(*mouseSel);
     env.GetMouse()->MouseMovedEvent().Attach(*mouseSel);
     env.GetMouse()->MouseButtonEvent().Attach(*mouseSel);
-    mouseSel->AddViewport(vp);
+    env.GetKeyboard()->KeyEvent().Attach(*mouseSel);
     
-    SelectionTool*      st = new SelectionTool();
+    SelectionTool*      st = new SelectionTool(*ss);
     TransformationTool* tt = new TransformationTool();
     CameraTool*         ct = new CameraTool();
+    ToolChain*          tc = new ToolChain();
     ss->ChangedEvent().Attach(*tt);
 
-    mouseSel->AddTool(ct);
-    mouseSel->AddTool(tt);
-    mouseSel->AddTool(st);
+    tc->PushBackTool(ct);
+    tc->PushBackTool(tt);
+    tc->PushBackTool(st);
+
+    mouseSel->BindTool(vp, tc);
 }
 
 void MainGUI::closeEvent(QCloseEvent* e) {
