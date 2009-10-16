@@ -88,7 +88,7 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup)
     env.GetKeyboard()->KeyEvent().Attach(*mouseSel);
     
     SelectionTool*      st = new SelectionTool(*ss);
-    TransformationTool* tt = new TransformationTool();
+    TransformationTool* tt = new TransformationTool(setup.GetTextureLoader());
     CameraTool*         ct = new CameraTool();
     ToolChain*          tc = new ToolChain();
     ss->ChangedEvent().Attach(*tt);
