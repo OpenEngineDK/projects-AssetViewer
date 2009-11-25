@@ -13,7 +13,9 @@
 #include <Meta/OpenGL.h>
 #include <Utils/SimpleSetup.h>
 #include <Display/QtEnvironment.h>
+#include <Resources/ResourceManager.h>
 #include <Resources/DirectoryManager.h>
+#include <Resources/SDLFont.h>
 #include <string>
 
 #include "MainGUI.h"
@@ -25,6 +27,7 @@ using namespace Resources;
 int main(int argc, char** argv) {
     string resources("projects/AssetViewer/data/");
     DirectoryManager::AppendPath(resources);
+    ResourceManager<IFontResource>::AddPlugin(new SDLFontPlugin());
 
     string title("OpenEngine Asset Viewer");
 
