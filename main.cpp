@@ -15,7 +15,8 @@
 #include <Display/QtEnvironment.h>
 #include <Resources/ResourceManager.h>
 #include <Resources/DirectoryManager.h>
-#include <Resources/SDLFont.h>
+// #include <Resources/SDLFont.h>
+#include <Resources/CairoFont.h>
 #include <string>
 
 #include "MainGUI.h"
@@ -27,7 +28,8 @@ using namespace Resources;
 int main(int argc, char** argv) {
     string resources("projects/AssetViewer/data/");
     DirectoryManager::AppendPath(resources);
-    ResourceManager<IFontResource>::AddPlugin(new SDLFontPlugin());
+    // ResourceManager<IFontResource>::AddPlugin(new SDLFontPlugin());
+    ResourceManager<IFontResource>::AddPlugin(new CairoFontPlugin());
 
     string title("OpenEngine Asset Viewer");
 
