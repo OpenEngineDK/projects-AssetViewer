@@ -23,6 +23,7 @@ TARGET_LINK_LIBRARIES(AssetViewer
   OpenEngine_Core
   OpenEngine_Utils
   # Extensions
+  Extensions_OpenColladaResource
   Extensions_SetupHelpers
   Extensions_Qt
   Extensions_OpenGLSelection
