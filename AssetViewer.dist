@@ -35,8 +35,8 @@ win32 /libraries http://openengine.dk/data/libraries/dlls-win32.zip
 
 # os x libraries
 #darwin /libraries http://openengine.dk/data/libraries/colladadom2.1-osx-i32.zip
-darwin /libraries http://openengine.dk/data/libraries/pcre-osx-i32.zip
-darwin /libraries http://openengine.dk/data/libraries/pcrecpp-osx-i32.zip
+#darwin /libraries http://openengine.dk/data/libraries/pcre-osx-i32.zip
+#darwin /libraries http://openengine.dk/data/libraries/pcrecpp-osx-i32.zip
 
 # linux libraries
 #linux /libraries http://openengine.dk/data/libraries/collada-linux.tar.gz
