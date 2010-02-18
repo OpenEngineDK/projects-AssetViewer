@@ -27,6 +27,5 @@ TARGET_LINK_LIBRARIES(AssetViewer
   Extensions_SetupHelpers
   Extensions_Qt
   Extensions_OpenGLSelection
-  Extensions_SDLFont
   ${BOOST_SERIALIZATION_LIB}
 )
