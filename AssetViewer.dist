@@ -9,21 +9,17 @@ darcs /projects/AssetViewer     http://openengine.dk/code/projects/AssetViewer
 darcs-dev /projects/AssetViewer fh.daimi.au.dk:/users/cgd/code/projects/AssetViewer
 
 # dist files
-dist /extensions/SetupHelpers/SetupHelpers.dist    http://openengine.dk/code/extensions/SetupHelpers/SetupHelpers.dist
-dist /extensions/OpenColladaResource/OpenColladaResource.dist    http://openengine.dk/code/extensions/OpenColladaResource/OpenColladaResource.dist
+dist /extensions/SetupHelpers/SetupHelpers.dist			http://openengine.dk/code/extensions/SetupHelpers/SetupHelpers.dist
+dist /extensions/OpenColladaResource/OpenColladaResource.dist   http://openengine.dk/code/extensions/OpenColladaResource/OpenColladaResource.dist
 
 # standard set of extensions
 darcs /extensions/SDL                    http://openengine.dk/code/extensions/SDL
-darcs /extensions/SetupHelpers           http://openengine.dk/code/extensions/SetupHelpers
-darcs /extensions/OpenColladaResource    http://openengine.dk/code/extensions/OpenColladaResource
 darcs /extensions/Qt                     http://openengine.dk/code/extensions/Qt
 darcs /extensions/OpenGLSelection        http://openengine.dk/code/extensions/OpenGLSelection
 
-darcs-dev /extensions/SDL                    fh.daimi.au.dk:/users/cgd/code/extensions/SDL
-darcs-dev /extensions/SetupHelpers           fh.daimi.au.dk:/users/cgd/code/extensions/SetupHelpers
-darcs-dev /extensions/OpenColladaResource    fh.daimi.au.dk:/users/cgd/code/extensions/OpenColladaResource
-darcs-dev /extensions/Qt                     fh.daimi.au.dk:/users/cgd/code/extensions/Qt
-darcs-dev /extensions/OpenGLSelection        fh.daimi.au.dk:/users/cgd/code/extensions/OpenGLSelection
+darcs-dev /extensions/SDL               fh.daimi.au.dk:/users/cgd/code/extensions/SDL
+darcs-dev /extensions/Qt                fh.daimi.au.dk:/users/cgd/code/extensions/Qt
+darcs-dev /extensions/OpenGLSelection   fh.daimi.au.dk:/users/cgd/code/extensions/OpenGLSelection
 
 # windows libraries
 win32 /libraries http://openengine.dk/data/libraries/boost-win32.zip
