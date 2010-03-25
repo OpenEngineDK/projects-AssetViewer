@@ -65,6 +65,7 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup)
     nodeGui  = new SceneNodeGUI();
     setup.GetEngine().InitializeEvent().Attach(*graphGui);
     graphGui->SelectionEvent().Attach(*nodeGui);
+    graphGui->SelectionEvent().Attach(*graphGui);
     graphGui->setMinimumWidth(150);
     ui->rightLayout->addWidget(nodeGui);
     ui->rightLayout->addWidget(graphGui);
