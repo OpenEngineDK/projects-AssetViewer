@@ -26,6 +26,9 @@ using namespace std;
 using namespace OpenEngine;
 using namespace Resources;
 
+// no sdl, undef main!
+#undef main
+
 int main(int argc, char** argv) {
     string resources("projects/AssetViewer/data/");
     DirectoryManager::AppendPath(resources);
