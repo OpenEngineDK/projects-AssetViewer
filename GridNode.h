@@ -25,7 +25,7 @@ public:
     virtual void SetSolidColor(Math::Vector<3,float> c);
     virtual void SetSolidRepeat(unsigned int n);
 
-    void Apply(Renderers::IRenderingView* view);
+    void Apply(Renderers::RenderingEventArg arg, Scene::ISceneNodeVisitor& v);
 
  private:
     float width;

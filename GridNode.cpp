@@ -54,26 +54,28 @@ void GridNode::SetSolidRepeat(unsigned int n) {
     solidRepeat = n;
 }
 
-void GridNode::Apply(Renderers::IRenderingView* view) {
+void GridNode::Apply(Renderers::RenderingEventArg arg, Scene::ISceneNodeVisitor& v) {
 
+    Renderers::IRenderer& r = arg.renderer;
+    
     // draw a thicker line in origin
     float dist = 0.0;
-    view->GetRenderer()->DrawLine( Line(Vector<3,float>(0.0, 0.0, -width),
+    r.DrawLine( Line(Vector<3,float>(0.0, 0.0, -width),
                                         Vector<3,float>(0.0, 0.0,  width)), solidColor, 2);
-    view->GetRenderer()->DrawLine( Line(Vector<3,float>(-width, 0.0, 0.0),
+    r.DrawLine( Line(Vector<3,float>(-width, 0.0, 0.0),
                                         Vector<3,float>( width, 0.0, 0.0)), solidColor, 2);
 
     // draw (number-1) lines in all directions going outwards from origin
     for (unsigned int i = 1; i < number; i++) {
         dist += space;
         Vector<3,float> c = (i % solidRepeat == 0) ? solidColor : fadeColor;
-        view->GetRenderer()->DrawLine( Line(Vector<3,float>(  dist, 0.0, -width),
+        r.DrawLine( Line(Vector<3,float>(  dist, 0.0, -width),
                                             Vector<3,float>(  dist, 0.0,  width)), c);
-        view->GetRenderer()->DrawLine( Line(Vector<3,float>( -dist, 0.0, -width),
+        r.DrawLine( Line(Vector<3,float>( -dist, 0.0, -width),
                                             Vector<3,float>( -dist, 0.0,  width)), c);
-        view->GetRenderer()->DrawLine( Line(Vector<3,float>(-width, 0.0,   dist),
+        r.DrawLine( Line(Vector<3,float>(-width, 0.0,   dist),
                                             Vector<3,float>( width, 0.0,   dist)), c);
-        view->GetRenderer()->DrawLine( Line(Vector<3,float>(-width, 0.0,  -dist),
+        r.DrawLine( Line(Vector<3,float>(-width, 0.0,  -dist),
                                             Vector<3,float>( width, 0.0,  -dist)), c);
     }
 }

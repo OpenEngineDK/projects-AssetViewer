@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
     Display::QtEnvironment* env = new Display::QtEnvironment(false);
 
     // Create a simple-setup
-    Utils::SimpleSetup* setup = new Utils::SimpleSetup(title, NULL, env);
+    Utils::SimpleSetup* setup = new Utils::SimpleSetup(title, env);
     ResourceManager<IModelResource>::AddPlugin(new ColladaPlugin());
 
     // Create the GUI

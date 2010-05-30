@@ -5,7 +5,9 @@
 
 #include <Math/Vector.h>
 
-#include "RenderingView.h"
+
+#include <Renderers/IRenderingView.h>
+#include <Renderers/OpenGL/RenderingView.h>
 
 #include "AssetViewer/ui_MainGUI.h"
 
@@ -14,11 +16,15 @@
 #include <Utils/FPSGUI.h>
 #include <Utils/QtLogger.h>
 
-#include <Utils/MouseSelection.h>
-#include <Utils/SelectionTool.h>
-#include <Utils/TransformationTool.h>
-#include <Utils/CameraTool.h>
-#include <Utils/ToolChain.h>
+// #include <Utils/MouseSelection.h>
+// #include <Utils/SelectionTool.h>
+// #include <Utils/TransformationTool.h>
+// #include <Utils/CameraTool.h>
+// #include <Utils/ToolChain.h>
+
+#include "GridNode.h"
+
+#include <Scene/SimpleTransformationNode.h>
 
 using namespace std;
 using namespace OpenEngine::Display;
@@ -26,6 +32,8 @@ using namespace OpenEngine::Utils;
 using namespace OpenEngine::Scene;
 using namespace OpenEngine::Math;
 using namespace OpenEngine::Logging;
+using namespace OpenEngine::Renderers;
+
 
 MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup)
     : setup(setup) {
@@ -34,12 +42,18 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup)
     ui = new Ui::MainGUI();
     ui->setupUi(this);
 
+    GridNode* grid = new GridNode(50, 10, 0);
+    grid->SetFadeColor(0.4);
+    grid->SetSolidRepeat(3);
+
+    setup.GetScene()->AddNode(grid);
+
     // set the main window title and status
     setWindowTitle(QString(title.c_str()));
     ui->statusbar->showMessage(QString("Loading..."));
 
     // replace the simple-setup logger
-    Logger::RemoveLogger(setup.GetLogger());
+    //Logger::RemoveLogger(setup.GetLogger());
     QtLogger* qtlog = new QtLogger();
     Logger::AddLogger(qtlog);
     ui->bottomLayout->addWidget(qtlog);
@@ -47,10 +61,6 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup)
     // add the gl widget to the left pane
     ui->topLayout->addWidget(env.GetGLWidget());
     setup.GetRenderer().SetBackgroundColor(Vector<4,float>(.5,.5,.5,1));
-    Viewport*      vp = new Viewport(setup.GetFrame());
-    RenderingView* rv = new RenderingView(*vp);
-    vp->SetViewingVolume(setup.GetCamera());
-    setup.GetRenderer().PreProcessEvent().Attach(*rv);
 
     // set the initial camera position
     Vector<3,float> position(50,40,50);
@@ -79,6 +89,7 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup)
     // Show the gui!
     show();
 
+    /* Commented out only SelectionTools are updated     
     //attach the mouse selection handler - maybe this should be put elsewhere
     mouseSel = new MouseSelection(env.GetFrame(), 
                                  *env.GetMouse(), 
@@ -99,6 +110,7 @@ MainGUI::MainGUI(string title, QtEnvironment& env, SimpleSetup& setup)
     tc->PushBackTool(st);
 
     mouseSel->BindTool(vp, tc);
+    */
 }
 
 void MainGUI::closeEvent(QCloseEvent* e) {
