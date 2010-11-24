@@ -15,9 +15,9 @@
 #include <Display/QtEnvironment.h>
 #include <Resources/ResourceManager.h>
 #include <Resources/DirectoryManager.h>
-#include <Resources/ColladaResource.h>
 // #include <Resources/SDLFont.h>
 #include <Resources/CairoFont.h>
+#include <Resources/AssimpResource.h>
 #include <string>
 
 #include "MainGUI.h"
@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
 
     // Create a simple-setup
     Utils::SimpleSetup* setup = new Utils::SimpleSetup(title, env);
-    ResourceManager<IModelResource>::AddPlugin(new ColladaPlugin());
+    ResourceManager<IModelResource>::AddPlugin(new AssimpPlugin());
 
     // Create the GUI
     MainGUI* gui = new MainGUI(title, *env, *setup);

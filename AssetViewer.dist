@@ -10,7 +10,9 @@ darcs-dev /projects/AssetViewer fh.daimi.au.dk:/users/cgd/code/projects/AssetVie
 
 # dist files
 dist /extensions/SetupHelpers/SetupHelpers.dist			http://openengine.dk/code/extensions/SetupHelpers/SetupHelpers.dist
-dist /extensions/OpenColladaResource/OpenColladaResource.dist   http://openengine.dk/code/extensions/OpenColladaResource/OpenColladaResource.dist
+#dist /extensions/OpenColladaResource/OpenColladaResource.dist   http://openengine.dk/code/extensions/OpenColladaResource/OpenColladaResource.dist
+
+dist /extensions/Assimp/Assimp.dist   http://openengine.dk/code/extensions/Assimp/Assimp.dist
 
 # standard set of extensions
 darcs /extensions/SDL                    http://openengine.dk/code/extensions/SDL
