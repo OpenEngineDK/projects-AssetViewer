@@ -1,27 +1,27 @@
 # OpenEngine Distribution file for AssetViewer.
 
 # main repository
-darcs / http://openengine.dk/code/openengine
-darcs-dev / fh.daimi.au.dk:/users/cgd/code/openengine
+git / https://github.com/OpenEngineDK/openengine.git
+git-dev / git@github.com:OpenEngineDK/openengine.git
 
 # AssetViewer project
-darcs /projects/AssetViewer     http://openengine.dk/code/projects/AssetViewer
-darcs-dev /projects/AssetViewer fh.daimi.au.dk:/users/cgd/code/projects/AssetViewer
+git /projects/AssetViewer     https://github.com/OpenEngineDK/projects-AssetViewer.git
+git-dev /projects/AssetViewer git@github.com:OpenEngineDK/projects-AssetViewer.git
 
 # dist files
-dist /extensions/SetupHelpers/SetupHelpers.dist			http://openengine.dk/code/extensions/SetupHelpers/SetupHelpers.dist
-#dist /extensions/OpenColladaResource/OpenColladaResource.dist   http://openengine.dk/code/extensions/OpenColladaResource/OpenColladaResource.dist
+dist /extensions/SetupHelpers/SetupHelpers.dist			https://raw.githubusercontent.com/OpenEngineDK/extensions-SetupHelpers/master/SetupHelpers.dist
+#dist /extensions/OpenColladaResource/OpenColladaResource.dist   https://raw.githubusercontent.com/OpenEngineDK/extensions-OpenColladaResource/master/OpenColladaResource.dist
 
-dist /extensions/Assimp/Assimp.dist   http://openengine.dk/code/extensions/Assimp/Assimp.dist
+dist /extensions/Assimp/Assimp.dist   https://raw.githubusercontent.com/OpenEngineDK/extensions-Assimp/master/Assimp.dist
 
 # standard set of extensions
-darcs /extensions/SDL                    http://openengine.dk/code/extensions/SDL
-darcs /extensions/Qt                     http://openengine.dk/code/extensions/Qt
-darcs /extensions/OpenGLSelection        http://openengine.dk/code/extensions/OpenGLSelection
+git /extensions/SDL                    https://github.com/OpenEngineDK/extensions-SDL.git
+git /extensions/Qt                     https://github.com/OpenEngineDK/extensions-Qt.git
+git /extensions/OpenGLSelection        https://github.com/OpenEngineDK/extensions-OpenGLSelection.git
 
-darcs-dev /extensions/SDL               fh.daimi.au.dk:/users/cgd/code/extensions/SDL
-darcs-dev /extensions/Qt                fh.daimi.au.dk:/users/cgd/code/extensions/Qt
-darcs-dev /extensions/OpenGLSelection   fh.daimi.au.dk:/users/cgd/code/extensions/OpenGLSelection
+git-dev /extensions/SDL               git@github.com:OpenEngineDK/extensions-SDL.git
+git-dev /extensions/Qt                git@github.com:OpenEngineDK/extensions-Qt.git
+git-dev /extensions/OpenGLSelection   git@github.com:OpenEngineDK/extensions-OpenGLSelection.git
 
 # windows libraries
 win32 /libraries http://openengine.dk/data/libraries/boost-win32.zip
